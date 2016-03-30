@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scrollNews</title>
+	<style>
+		* {
+			padding:0;
+			margin:0;
+			list-style: none;
+			font-family: 'microsoft yehei';
+			text-decoration: none;
+		}
+
+		.scrollNews {
+			width:300px;
+			height:300px;
+			margin:50px auto 0;
+			overflow: hidden;
+		}
+		
+		.scroll {
+			width:300px;
+		}
+
+		.scroll li {
+			width:300px;
+			height:30px;
+			line-height: 30px;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.scroll li a {
+			color:#695554;
+		}
+	</style>
+</head>
+<body>
+	<div class="scrollNews">
+		<ul id="scroll" class="scroll">
+			<li><a href="">IT男猝死马桶上</a></li>
+			<li><a href="">不明飞行物砸中粪坑</a></li>
+			<li><a href="">某男子开车撞死肥猪</a></li>
+			<li><a href="">清明怨气太深所以经常下雨？</a></li>
+			<li><a href="">论前端有多少坑</a></li>
+			<li><a href="">最新Macbook到底值不值这个价</a></li>
+			<li><a href="">如何才能年薪百万</a></li>
+			<li><a href="">猪在风口也能妖娆飞翔</a></li>
+		</ul>
+	</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script>
+	/*$(function(){
+		function scroll(){
+			$(".scroll li:first").appendTo('.scroll');
+		}
+		var timer=null;
+		timer=setInterval(scroll,1500);
+		$(".scroll li").hover(function(){
+			clearInterval(timer);
+		},function(){
+			timer=setInterval(scroll,1500);
+		});
+	});*/
+
+	//js原生
+	window.onload=function(){
+		var oScroll=document.getElementById('scroll');
+		var oLi=oScroll.getElementsByTagName('li');
+		var timer=null;
+
+		function scroll(){
+			var node=oLi[0];
+			oScroll.appendChild(node);
+		}
+		timer=setInterval(scroll,1500);
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].onmouseover=function(){
+				clearInterval(timer);
+				timer=null;
+			}
+			oLi[i].onmouseout=function(){
+				timer=setInterval(scroll,1500);
+			}
+		}
+	}
+</script>
+</body>
+</html>
